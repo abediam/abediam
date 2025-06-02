@@ -3,132 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بازی عاشقانه مرحله‌ای</title>
+  <title>شعر احساسی من</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      height: 100vh;
+      background: linear-gradient(to right, #e0f7fa, #ffe0f0);
+      font-family: 'Vazirmatn', sans-serif;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      direction: rtl;
       text-align: center;
-      padding: 20px;
     }
+
     h1 {
-      font-size: 1.5rem;
-      color: #fff;
+      color: #d63384;
       margin-bottom: 30px;
     }
-    button {
-      padding: 10px 15px;
-      font-size: 1rem;
-      border: none;
+
+    select, button {
+      font-size: 18px;
+      padding: 10px 20px;
       border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
+      border: none;
       margin: 10px;
-      max-width: 80vw;
-    }
-    .yes {
-      background-color: #ff4e50;
-      color: white;
-    }
-    .no {
-      background-color: #ccc;
-      position: absolute;
-    }
-    #message {
-      margin-top: 20px;
-      font-size: 1.2rem;
+      background-color: #f8bbd0;
       color: #fff;
-      display: none;
+      cursor: pointer;
     }
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.2rem;
-      }
-      button {
-        font-size: 0.9rem;
-        padding: 8px 12px;
-      }
+
+    #poemBox {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 600px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      font-size: 20px;
+      margin-top: 20px;
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1 id="question">اگه من بستنی بودم، حاضر بودی منو با تمام سردی‌هام تحمل کنی؟ 🍦</h1>
-  <div>
-    <button class="yes" id="yes">آره، تو خوشمزه‌ترینی 😍</button>
-    <button class="no" id="no">نه، سردی اذیتم می‌کنه 😬</button>
-  </div>
-  <div id="message">❤️ حالا دیگه مطمئنم تو همونی که دلم می‌خواست 😘</div>
+  <h1>💖 حسِ امروزت چیه؟</h1>
+  <select id="moodSelect">
+    <option value="love">عاشقانه</option>
+    <option value="sad">غمگین</option>
+    <option value="hope">امیدوار</option>
+    <option value="nostalgia">نوستالژیک</option>
+  </select>
+  <button onclick="showPoem()">بخون برام</button>
+
+  <div id="poemBox"></div>
 
   <script>
-    const questions = [
-      {
-        text: "اگه من بستنی بودم، حاضر بودی منو با تمام سردی‌هام تحمل کنی؟ 🍦",
-        yes: "آره، تو خوشمزه‌ترینی 😍",
-        no: "نه، سردی اذیتم می‌کنه 😬"
-      },
-      {
-        text: "فکر می‌کنی من قهوه‌ام یا شیرکاکائو؟ ☕🍫",
-        yes: "قهوه تلخ ولی خاص!",
-        no: "نه، شیری ولی با عسل زیاد!"
-      },
-      {
-        text: "اگه یه فرشته فقط می‌تونست یه نفر رو خوشبخت کنه، فکر می‌کنی منو انتخاب می‌کرد؟ 😇",
-        yes: "معلومه! تو خودِ خوشبختی هستی!",
-        no: "نه، اون منو انتخاب می‌کرد 😜"
-      },
-      {
-        text: "اگه قرار باشه یه جا بریم که فقط دو نفر حق دارن برن، منو انتخاب می‌کنی؟ 🚀",
-        yes: "قطعا، بدون شک! 💫",
-        no: "نه، با گربه‌م می‌رم 😼"
-      },
-      {
-        text: "آخرش بگو... اگه فقط یه بوس واسه همیشه داشتی، واسه کی نگه‌می‌داشتی؟ 😘",
-        yes: "واسه خودت! چون تو خاصی... 💋",
-        no: "هیچ‌کس! بوس نمی‌دم 😅"
-      }
-    ];
+    const poems = {
+      love: `در دل شب، نام تو آرامم کرد\nمثل نسیم، مست و سبک، رامم کرد\nبا یک نگاه، با یک تبسم نرم\nعشق تو از جهان جدا جامم کرد` ,
 
-    const questionEl = document.getElementById("question");
-    const yesBtn = document.getElementById("yes");
-    const noBtn = document.getElementById("no");
-    const message = document.getElementById("message");
+      sad: `دلم گرفته ای دوست، هوای گریه با من\nنمانده هیچ امیدی، در این شبانه با من\nچو برگ خسته از باد، شکسته‌ام در این راه\nببین چه کرده با من، نبودنت، نبودن` ,
 
-    let current = 0;
+      hope: `طلوع می‌کند از نو، همیشه صبح امید\nاگر چه شب همه شب، مرا به گریه کشید\nدلم به فردا روشن، نگاه من به افق\nکه می‌رسد نسیمی، ز سمت باغ سپید` ,
 
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 50);
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
-    });
+      nostalgia: `یاد آن روزهای ساده و ناب\nخنده‌هایی میان کوچه‌ی خواب\nدل من تنگِ آن لحظه‌هاست\nکاش آن خاطره باز زنده شود، بی‌حساب`
+    };
 
-    function nextQuestion() {
-      current++;
-      if (current < questions.length) {
-        const q = questions[current];
-        questionEl.textContent = q.text;
-        yesBtn.textContent = q.yes;
-        noBtn.textContent = q.no;
-      } else {
-        questionEl.style.display = "none";
-        yesBtn.style.display = "none";
-        noBtn.style.display = "none";
-        message.style.display = "block";
-      }
+    function showPoem() {
+      const mood = document.getElementById("moodSelect").value;
+      const poemBox = document.getElementById("poemBox");
+      poemBox.style.display = "block";
+      poemBox.textContent = poems[mood];
     }
-
-    yesBtn.addEventListener("click", nextQuestion);
-    noBtn.addEventListener("click", nextQuestion);
   </script>
 </body>
 </html>
