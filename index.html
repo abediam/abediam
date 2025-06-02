@@ -1,80 +1,0 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>شعر احساسی من</title>
-  <style>
-    body {
-      background: linear-gradient(to right, #e0f7fa, #ffe0f0);
-      font-family: 'Vazirmatn', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      direction: rtl;
-      text-align: center;
-    }
-
-    h1 {
-      color: #d63384;
-      margin-bottom: 30px;
-    }
-
-    select, button {
-      font-size: 18px;
-      padding: 10px 20px;
-      border-radius: 10px;
-      border: none;
-      margin: 10px;
-      background-color: #f8bbd0;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    #poemBox {
-      background: rgba(255, 255, 255, 0.8);
-      padding: 30px;
-      border-radius: 15px;
-      max-width: 600px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      font-size: 20px;
-      margin-top: 20px;
-      display: none;
-    }
-  </style>
-</head>
-<body>
-  <h1>💖 حسِ امروزت چیه؟</h1>
-  <select id="moodSelect">
-    <option value="love">عاشقانه</option>
-    <option value="sad">غمگین</option>
-    <option value="hope">امیدوار</option>
-    <option value="nostalgia">نوستالژیک</option>
-  </select>
-  <button onclick="showPoem()">بخون برام</button>
-
-  <div id="poemBox"></div>
-
-  <script>
-    const poems = {
-      love: `در دل شب، نام تو آرامم کرد\nمثل نسیم، مست و سبک، رامم کرد\nبا یک نگاه، با یک تبسم نرم\nعشق تو از جهان جدا جامم کرد` ,
-
-      sad: `دلم گرفته ای دوست، هوای گریه با من\nنمانده هیچ امیدی، در این شبانه با من\nچو برگ خسته از باد، شکسته‌ام در این راه\nببین چه کرده با من، نبودنت، نبودن` ,
-
-      hope: `طلوع می‌کند از نو، همیشه صبح امید\nاگر چه شب همه شب، مرا به گریه کشید\nدلم به فردا روشن، نگاه من به افق\nکه می‌رسد نسیمی، ز سمت باغ سپید` ,
-
-      nostalgia: `یاد آن روزهای ساده و ناب\nخنده‌هایی میان کوچه‌ی خواب\nدل من تنگِ آن لحظه‌هاست\nکاش آن خاطره باز زنده شود، بی‌حساب`
-    };
-
-    function showPoem() {
-      const mood = document.getElementById("moodSelect").value;
-      const poemBox = document.getElementById("poemBox");
-      poemBox.style.display = "block";
-      poemBox.textContent = poems[mood];
-    }
-  </script>
-</body>
-</html>
